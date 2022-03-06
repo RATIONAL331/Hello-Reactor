@@ -64,7 +64,7 @@ class FluxAndMonoTest {
         Random random = new Random();
         int id = random.nextInt(2);
         // defer는 구독하는 순간에 행동을 결정한다. 따라서 서로 다른 구독자에 대해 각각 다른 데이터를 생성할 수 있다.
-        // id % 2 == 0는 실제로 구독이 발생할 때 까지 수행이 되지 않음.
+        // id % 2 == 0는 실제로 구독이 발생할 때 까지 수행이 되지 않음
         Mono<Boolean> defer = Mono.defer(() -> id % 2 == 0 ? Mono.fromCallable(() -> Boolean.TRUE) : Mono.error(new RuntimeException()));
         defer.subscribe(System.out::println);
     }
